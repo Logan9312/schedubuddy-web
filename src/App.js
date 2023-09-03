@@ -24,7 +24,7 @@ const urlData = window.location.search;
 const App = () => (
   <>
     <Helmet>  {/* <-- Use Helmet component to set meta tags */}
-      <meta property="og:image" content={API_URL + urlData} />
+      <meta property="og:image" content={API_URL+ 'api/v1/draw-sched/' + urlData} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="og:image:type" content="image/png" />
     </Helmet>
