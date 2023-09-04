@@ -1,7 +1,13 @@
-import { Autocomplete, Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Stack } from "@mui/system";
-import BasicSelect from "components/FormInputs/BasicSelect";
-import { useFormContext } from "context/Form";
+import BasicSelect from "../components/FormInputs/BasicSelect";
+import { useFormContext } from "../layouts/Form";
 import { useState } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -15,7 +21,9 @@ export const Form = (props) => {
 
     // Fetch rooms on term change
     try {
-      const response = await fetch(`${API_URL}/api/v1/rooms/?term=${e.target.value}`);
+      const response = await fetch(
+        `${API_URL}/api/v1/rooms/?term=${e.target.value}`
+      );
       const data = await response.json();
 
       const sortedRoomsAvailable = data.objects.sort((a, b) =>

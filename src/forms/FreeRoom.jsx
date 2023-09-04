@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
-import BasicSelect from "components/FormInputs/BasicSelect";
-import { useFormContext } from "context/Form";
+import BasicSelect from "../components/FormInputs/BasicSelect";
+import { useFormContext } from "../layouts/Form";
 
 const dayOptions = [
   { label: "Sunday", value: "U" },

@@ -1,15 +1,15 @@
 import { TabContext, TabPanel } from "@mui/lab";
 import { Card, CardContent, Grid } from "@mui/material";
-import FormSwitcher from "components/FormSwitcher";
-import LoadingCardContent from "components/LoadingCard";
-import { FormProvider } from "context/Form";
-import { Form as FreeRoomForm } from "forms/FreeRoom";
-import { Form as RoomForm } from "forms/Room";
-import { Form as ScheduleForm } from "forms/Schedule";
-import FreeRoomContainer from "layouts/FreeRoomContainer";
-import ScheduleContainer from "layouts/ScheduleContainer";
+import FormSwitcher from "../components/FormSwitcher";
+import LoadingCardContent from "../components/LoadingCard";
+import { FormProvider } from "../layouts/Form";
+import { Form as FreeRoomForm } from "../forms/FreeRoom";
+import { Form as RoomForm } from "../forms/Room";
+import { Form as ScheduleForm } from "../forms/Schedule";
+import FreeRoomContainer from "../layouts/FreeRoomContainer";
+import ScheduleContainer from "../layouts/ScheduleContainer";
 import { useState } from "react";
-import { fetchClasses } from "forms/Schedule";
+import { fetchClasses } from "../forms/Schedule";
 
 const API_URL = process.env.REACT_APP_API_URL;
 const urlData = window.location.search;
@@ -39,9 +39,11 @@ if (parsedBlacklist[0] !== "") {
 
 let courseData = {};
 for (let i = 0; i < courseList.length; i++) {
-  fetchClasses(searchParams.get("term"), courseList[i].asString).then((data) => {
-    courseData[courseList[i].asString] = data;
-  });
+  fetchClasses(searchParams.get("term"), courseList[i].asString).then(
+    (data) => {
+      courseData[courseList[i].asString] = data;
+    }
+  );
 }
 
 const initialValues = {
@@ -128,7 +130,9 @@ const Main = () => {
       const course_ids = courses.map((course) => course.course).join(",");
       const eveningClassesBit = evening === true ? "1" : "0";
       const onlineClassesBit = online === true ? "1" : "0";
-      let blacklist_ids = Object.keys(blacklist).filter((id) => blacklist[id] === true);
+      let blacklist_ids = Object.keys(blacklist).filter(
+        (id) => blacklist[id] === true
+      );
       blacklist_ids = blacklist_ids.join(",");
       const prefsStr = `?term=${scheduleTerm}&courses=[${course_ids}]&evening=${eveningClassesBit}&online=${onlineClassesBit}&start=${startPref}&consec=${consecPref}&limit=${resultSize}&blacklist=[${blacklist_ids}]`;
       const req_url = `${API_URL}/api/v1/gen-schedules/${prefsStr}`;

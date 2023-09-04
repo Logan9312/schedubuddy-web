@@ -1,4 +1,4 @@
-import MiniSelect from "components/FormInputs/MiniSelect";
+import MiniSelect from "../components/FormInputs/MiniSelect";
 
 const options = [
   { label: "1 Hr", value: 0 },
@@ -6,7 +6,7 @@ const options = [
   { label: "3 Hrs", value: 2 },
   { label: "4 Hrs", value: 3 },
   { label: "5 Hrs", value: 4 },
-  { label: "Max", value: 12 }
+  { label: "Max", value: 12 },
 ];
 
 const MarathonPref = (props) => (

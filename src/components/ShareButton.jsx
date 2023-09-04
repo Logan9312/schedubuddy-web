@@ -2,7 +2,7 @@ import { Button, Snackbar } from "@mui/material";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import MuiAlert from "@mui/material/Alert";
 import React from "react";
-import { useFormContext } from "context/Form";
+import { useFormContext } from "../layouts/Form";
 
 const rootURL = `${window.location.protocol}//${window.location.hostname}${
   window.location.port ? ":" + window.location.port : ""
@@ -27,11 +27,15 @@ export const generateShareLink = async ({
 
   // Extract all section IDs from componentData
   const allClasses = Object.values(componentData).flatMap((course) =>
-    Object.values(course).flatMap((component) => component.map((section) => section.id))
+    Object.values(course).flatMap((component) =>
+      component.map((section) => section.id)
+    )
   );
 
   // Blacklist is all section IDs minus the classes in the schedule
-  const blacklist_ids = allClasses.filter((id) => !classes.includes(id)).join(",");
+  const blacklist_ids = allClasses
+    .filter((id) => !classes.includes(id))
+    .join(",");
   const eveningClassesBit = evening === true ? "1" : "0";
   const onlineClassesBit = online === true ? "1" : "0";
 

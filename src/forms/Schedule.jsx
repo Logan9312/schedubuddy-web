@@ -8,12 +8,12 @@ import {
   Typography,
 } from "@mui/material";
 import { Stack } from "@mui/system";
-import ChipAutoComplete from "components/ChipAutoComplete";
-import BasicSelect from "components/FormInputs/BasicSelect";
-import MarathonPref from "components/MarathonPref";
-import TimePick from "components/TimePick";
-import CourseLock from "components/CourseLock";
-import { useFormContext } from "context/Form";
+import ChipAutoComplete from "../components/ChipAutoComplete";
+import BasicSelect from "../components/FormInputs/BasicSelect";
+import MarathonPref from "../components/MarathonPref";
+import TimePick from "../components/TimePick";
+import CourseLock from "../components/CourseLock";
+import { useFormContext } from "../layouts/Form";
 import { useEffect, useState } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -139,7 +139,9 @@ export const Form = (props) => {
         onChange={handleCourseChange}
         options={courseOptions.filter(
           (option) =>
-            !values.courses.some((course) => course.asString === option.asString)
+            !values.courses.some(
+              (course) => course.asString === option.asString
+            )
         )}
         value={values.courses}
       />
@@ -147,12 +149,24 @@ export const Form = (props) => {
         <FormControlLabel
           label="Include 3-hour weekly lectures"
           control={
-            <Checkbox checked={values.evening} name="evening" onChange={handleChange} />
+            <Checkbox
+              checked={values.evening}
+              name="evening"
+              onChange={handleChange}
+            />
           }
         />
       </FormGroup>
-      <TimePick name="startPref" onChange={handleChange} value={values.startPref} />
-      <MarathonPref name="consecPref" onChange={handleChange} value={values.consecPref} />
+      <TimePick
+        name="startPref"
+        onChange={handleChange}
+        value={values.startPref}
+      />
+      <MarathonPref
+        name="consecPref"
+        onChange={handleChange}
+        value={values.consecPref}
+      />
       {showAdvanced && (
         <div>
           {values.courses.map((course) => (
